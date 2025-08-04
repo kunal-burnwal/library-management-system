@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Login - Library System</title>
+    <link rel="stylesheet" href="/static/style.css">
+    <style>
+        body {
+            background: url('/static/login_bg.jpg') no-repeat center center fixed;
+            background-size: cover;
+        }
+        .container {
+            display: flex;
+            min-height: 100vh;
+        }
+        .sidebar {
+            width: 220px;
+            background: rgba(34, 49, 63, 0.95);
+            color: #fff;
+            padding: 30px 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .sidebar a {
+            color: #fff;
+            text-decoration: none;
+            margin: 18px 0;
+            font-size: 1.1em;
+            font-weight: bold;
+            transition: color 0.2s;
+        }
+        .sidebar a:hover {
+            color: #ffd700;
+        }
+        .main-content {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: rgba(255,255,255,0.85);
+            border-radius: 0 12px 12px 0;
+            margin: 30px 0;
+        }
+        .login-box {
+            background: #fff;
+            padding: 38px 44px;
+            border-radius: 12px;
+            box-shadow: 0 4px 24px rgba(34,49,63,0.13);
+            width: 350px;
+        }
+        .login-box h2 {
+            text-align: center;
+            margin-bottom: 28px;
+            color: #22313f;
+        }
+        .login-box label {
+            display: block;
+            margin-bottom: 8px;
+            color: #22313f;
+            font-weight: bold;
+        }
+        .login-box input[type="text"],
+        .login-box input[type="password"] {
+            width: 100%;
+            padding: 10px 12px;
+            margin-bottom: 18px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 1em;
+        }
+        .login-btn {
+            width: 100%;
+            padding: 10px 0;
+            background: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            font-size: 1.1em;
+            font-weight: bold;
+            cursor: pointer;
+            margin-bottom: 12px;
+        }
+        .login-btn:hover {
+            background: #0056b3;
+        }
+        .login-box .error {
+            color: #e74c3c;
+            text-align: center;
+            margin-bottom: 12px;
+        }
+        .login-box a {
+            color: #007bff;
+            text-decoration: none;
+            font-size: 0.98em;
+        }
+        .login-box a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="sidebar">
+            <h2>Library</h2>
+            <a href="/">Home</a>
+            <a href="/register">Register</a>
+        </div>
+        <div class="main-content">
+            <div class="login-box">
+                <h2>Login</h2>
+                {% if error %}
+                    <div class="error">{{ error }}</div>
+                {% endif %}
+                <form method="post" action="/login">
+                    <label>Username:</label>
+                    <input type="text" name="username" required>
+                    <label>Password:</label>
+                    <input type="password" name="password" required>
+                    <button type="submit" class="login-btn">Login</button>
+                </form>
+                <div style="text-align:center;">
+                    <a href="/register">Don't have an account? Register</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

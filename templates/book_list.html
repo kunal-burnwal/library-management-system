@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Book List - Library System</title>
+    <link rel="stylesheet" href="/static/style.css">
+    <style>
+        body {
+            background: url('/static/borrow_book.jpg') no-repeat center center fixed;
+            background-size: cover;
+        }
+        .container {
+            display: flex;
+            min-height: 100vh;
+        }
+        .sidebar {
+            width: 220px;
+            background: rgba(34, 49, 63, 0.95);
+            color: #fff;
+            padding: 30px 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .sidebar a {
+            color: #fff;
+            text-decoration: none;
+            margin: 18px 0;
+            font-size: 1.1em;
+            font-weight: bold;
+            transition: color 0.2s;
+        }
+        .sidebar a:hover {
+            color: #ffd700;
+        }
+        .main-content {
+            flex: 1;
+            padding: 40px 60px;
+            background: rgba(255,255,255,0.85);
+            border-radius: 0 12px 12px 0;
+            margin: 30px 0;
+        }
+        .header {
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+        .header h2 {
+            margin-right: 40px;
+            color: #22313f;
+        }
+        .header a {
+            margin-right: 25px;
+            color: #22313f;
+            font-weight: bold;
+            text-decoration: none;
+            font-size: 1.1em;
+        }
+        .header a:hover {
+            color: #007bff;
+        }
+        table {
+            width: 100%;
+            background: #fff;
+            border-collapse: collapse;
+            margin-top: 18px;
+            box-shadow: 0 2px 8px rgba(34,49,63,0.07);
+        }
+        th, td {
+            padding: 12px 16px;
+            border: 1px solid #ccc;
+            text-align: left;
+        }
+        th {
+            background: #22313f;
+            color: #fff;
+        }
+        .borrow-btn {
+            background: #27ae60;
+            color: #fff;
+            border: none;
+            padding: 7px 16px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        .borrow-btn:hover {
+            background: #219150;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="sidebar">
+            <h2>Library</h2>
+            <a href="/dashboard">Dashboard</a>
+            <a href="/books">View Books</a>
+            <a href="/logout">Logout</a>
+        </div>
+        <div class="main-content">
+            <div class="header">
+                <h2>Book List</h2>
+                <a href="/dashboard">Dashboard</a>
+                <a href="/books">View Books</a>
+            </div>
+            <table>
+                <tr>
+                    <th>Title</th><th>Author</th><th>ISBN</th><th>Status</th><th>Action</th>
+                </tr>
+                {% for book in books %}
+                <tr>
+                    <td>{{ book.title }}</td>
+                    <td>{{ book.author }}</td>
+                    <td>{{ book.isbn }}</td>
+                    <td>
+                        {% if book.is_borrowed %}
+                            <span style="color:#e74c3c;font-weight:bold;">Borrowed</span>
+                        {% else %}
+                            <span style="color:#27ae60;font-weight:bold;">Available</span>
+                        {% endif %}
+                    </td>
+                    <td>
+                        {% if not book.is_borrowed %}
+                        <form method="post" action="/borrow">
+                            <input type="hidden" name="isbn" value="{{ book.isbn }}">
+                            <button type="submit" class="borrow-btn">Borrow</button>
+                        </form>
+                        {% else %}
+                            -
+                        {% endif %}
+                    </td>
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Library Management System</title>
+    <link rel="stylesheet" href="/static/style.css">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            background: url('/static/main.jpeg') no-repeat center center fixed;
+            background-size: cover;
+            font-family: 'Segoe UI', Arial, sans-serif;
+            color: #222;
+            display: flex;
+            flex-direction: column;
+        }
+        .container {
+            background: rgba(255,255,255,0.85);
+            margin: auto;
+            padding: 2rem 3rem;
+            border-radius: 18px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.18);
+            max-width: 600px;
+            text-align: center;
+        }
+        h1 {
+            font-size: 2.8rem;
+            margin-bottom: 0.5rem;
+            color: #2d6a4f;
+            letter-spacing: 2px;
+        }
+        .desc {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            color: #333;
+        }
+        .actions {
+            margin-top: 2rem;
+        }
+        .actions a {
+            display: inline-block;
+            margin: 0 1rem;
+            padding: 0.7rem 2rem;
+            border-radius: 8px;
+            background: #40916c;
+            color: #fff;
+            font-weight: 600;
+            text-decoration: none;
+            transition: background 0.2s, transform 0.2s;
+            box-shadow: 0 2px 8px rgba(64,145,108,0.12);
+        }
+        .actions a:hover {
+            background: #1b4332;
+            transform: scale(1.05);
+        }
+        .footer {
+            margin-top: 3rem;
+            text-align: center;
+            font-size: 1.1rem;
+            font-weight: bold;
+            color: #fff;
+            background: rgba(44, 62, 80, 0.7);
+            padding: 1rem 0;
+            border-radius: 12px;
+            letter-spacing: 1px;
+            position: relative;
+            overflow: hidden;
+        }
+        .footer span {
+            display: inline-block;
+            animation: pulse 1.2s infinite alternate;
+        }
+        @keyframes pulse {
+            0% { color: #ffd700; transform: scale(1); }
+            100% { color: #fff; transform: scale(1.08); }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Library Management System</h1>
+        <div class="desc">
+            Welcome to your modern library management platform.<br>
+            Effortlessly manage books, users, and borrowing activities.<br>
+            Secure login, easy registration, and a beautiful dashboard for all your library needs.
+        </div>
+        <div class="actions">
+            {% if not user %}
+                <a href="/login">Login</a>
+                <a href="/register">Register</a>
+            {% else %}
+                <a href="/dashboard">Dashboard</a>
+                <a href="/books">Browse Books</a>
+                <a href="/logout">Logout</a>
+            {% endif %}
+        </div>
+    </div>
+    <div class="footer">
+        <span>Created by Kunal Burnwal</span>
+    </div>
+</body>
+</html>
